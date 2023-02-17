@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    config:
+      import-check:
+        enabled: false
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/ms-learning-cad
+
+  kafka:
+    bootstrap-servers: localhost:29092
+
+springdoc:
+  swagger-ui:
+    enabled: true
+
+
+
+
