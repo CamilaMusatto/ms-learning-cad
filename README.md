@@ -7,7 +7,7 @@
 <br>
 
 ## Descrição do Projeto
-<p align="left">Microsserviço para cadastro de estudantes.</p>
+<p align="left">Microsserviço para cadastro de estudantes (Producer).</p>
 
 ## Tecnologias Utilizadas
 <p> - Java 17</p>
