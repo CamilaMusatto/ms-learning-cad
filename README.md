@@ -7,7 +7,7 @@
 <br>
 
 ## Descrição do Projeto
-<p align="left">Microsserviço para registro estudantes (Producer Kafka).</p>
+<p align="left">Microsserviço para registro de estudantes (Producer Kafka).</p>
 
 ## Tecnologias Utilizadas
 <div style="display: inline_block">
