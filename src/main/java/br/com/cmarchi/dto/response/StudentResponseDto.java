@@ -1,18 +1,20 @@
-package br.com.cmarchi.http;
+package br.com.cmarchi.dto.response;
 
 import java.time.LocalDate;
 
-public class StudentDto {
+public class StudentResponseDto {
 
     private String fullName;
     private String document;
-
     private LocalDate birthdate;
     private String courseName;
-
     private boolean isActive;
 
-    public StudentDto(String fullName, String document, LocalDate birthdate, String courseName, boolean isActive) {
+
+    public StudentResponseDto() {
+    }
+
+    public StudentResponseDto(String fullName, String document, LocalDate birthdate, String courseName, boolean isActive) {
         this.fullName = fullName;
         this.document = document;
         this.birthdate = birthdate;

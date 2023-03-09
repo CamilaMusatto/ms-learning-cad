@@ -2,13 +2,14 @@ package br.com.cmarchi.service;
 
 import br.com.cmarchi.client.CourseClient;
 import br.com.cmarchi.domain.Student;
+import br.com.cmarchi.dto.request.StudentRequestDto;
+import br.com.cmarchi.dto.response.StudentIdResponse;
 import br.com.cmarchi.http.CourseDto;
 import br.com.cmarchi.http.StudentDto;
 import br.com.cmarchi.kafka.ProducerKafka;
 import br.com.cmarchi.model.CreatedStudentEvent;
 import br.com.cmarchi.repositories.StudentRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -31,13 +32,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public String createStudentResult(Student student) throws JsonProcessingException {
-        List<CourseDto> courses = client.buscaPeloCourseId(student.getCourseId());
+    public StudentIdResponse createStudentResult(StudentRequestDto studentRequestDto) throws JsonProcessingException {
+        List<CourseDto> courses = client.buscaPeloCourseId(studentRequestDto.getCourseId());
 
         if(courses.size() == 1){
-            Student savedStudent = repository.save(student);
-            producer.send(studentEventBuilder(savedStudent));
-            return savedStudent.getStudentId().toString();
+            Student student = new Student(studentRequestDto.getFirstName(), studentRequestDto.getLastName(),
+                    studentRequestDto.getDocument(), studentRequestDto.getBirthdate(), studentRequestDto.getCourseId());
+            repository.save(student);
+            producer.send(studentEventBuilder(student));
+            return new StudentIdResponse(student.getStudentId());
+
+            //return savedStudent.getStudentId().toString();
 
         } else {
             //System.out.println(courses);
@@ -56,7 +61,7 @@ public class StudentServiceImpl implements StudentService {
 
         String fullName = String.format("%s %s", student.getFirstName(), student.getLastName());
 
-        StudentDto studentDto = new StudentDto(fullName, student.getDocument(), courseName, student.isStatus());
+        StudentDto studentDto = new StudentDto(fullName, student.getDocument(), student.getBirthdate(), courseName, student.isStatus());
 
         return studentDto;
 

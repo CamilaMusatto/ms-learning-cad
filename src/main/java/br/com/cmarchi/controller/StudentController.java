@@ -1,6 +1,8 @@
 package br.com.cmarchi.controller;
 
 import br.com.cmarchi.domain.Student;
+import br.com.cmarchi.dto.request.StudentRequestDto;
+import br.com.cmarchi.dto.response.StudentIdResponse;
 import br.com.cmarchi.http.StudentDto;
 import br.com.cmarchi.service.StudentService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -29,13 +31,13 @@ public class StudentController {
     responses = {
             @ApiResponse(description = "Sucess", responseCode = "200", content = {
                     @Content (mediaType = "application/json",
-                    schema = @Schema (implementation = Student.class))
+                    schema = @Schema (implementation = StudentIdResponse.class))
             })
     })
     @PostMapping(value = "/student", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createStudent(@RequestBody Student student) throws JsonProcessingException {
+    public ResponseEntity<StudentIdResponse> createStudent(@RequestBody StudentRequestDto studentRequestDto) throws JsonProcessingException {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.createStudentResult(student));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createStudentResult(studentRequestDto));
 
     }
 

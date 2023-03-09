@@ -3,6 +3,7 @@ package br.com.cmarchi.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
@@ -16,17 +17,17 @@ public class Student {
     private String firstName;
     private String lastName;
     private String document;
-    //private Date birthdate;
+    private LocalDate birthdate;
     private UUID courseId;
     private boolean status;
     private LocalDateTime createdOn;
 
-    public Student( String firstName, String lastName, String document, /*Date birthdate , */ UUID courseId) {
+    public Student( String firstName, String lastName, String document, LocalDate birthdate ,  UUID courseId) {
         this.studentId = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.document = document;
-        //this.birthdate = birthdate;
+        this.birthdate = birthdate;
         this.courseId = courseId;
         this.status = true;
         this.createdOn = LocalDateTime.now();
@@ -72,13 +73,13 @@ public class Student {
         this.document = document;
     }
 
-   /* public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
-    }  */
+    }
 
 
     public UUID getCourseId() {
