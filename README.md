@@ -1,4 +1,4 @@
-<h1 align="left">MS Learning Attendance</h1>
+<h1 align="left">MS Learning Cad</h1>
 
 ![image](https://img.shields.io/badge/license-MIT-green) &nbsp; 
 ![image](https://img.shields.io/badge/IDE-IntelliJ%20IDEa-green) &nbsp;
@@ -7,7 +7,7 @@
 <br>
 
 ## Descrição do Projeto
-<p align="left">Microsserviço para registro de presença de estudantes, (Consumer).</p>
+<p align="left">Microsserviço para registro estudantes (Producer Kafka).</p>
 
 ## Tecnologias Utilizadas
 <div style="display: inline_block">
